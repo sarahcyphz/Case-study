@@ -19,6 +19,7 @@ public class AMSC {
 
         input.close();
 
+        
         double monthlyPayment = loanAmount * monthlyRate / (1 - 1 / Math.pow(1 + monthlyRate, periods)); 
 
         double interestPaid = loanAmount * monthlyRate;
@@ -26,7 +27,28 @@ public class AMSC {
         double principleAmount = monthlyPayment - interestPaid;
         double interest;
 
+        // format output
+        System.out.println("Month\t\tLoan Amount\t\tInterest\t\tPrinciple\t\tMonthly Payment");
+        System.out.println("");
+
+        for (int i = 1; i <= periods; i++) {
+            interest = loanAmount * monthlyRate;
+            principleAmount = monthlyPayment - interest;
+            formatPrint(i, loanAmount, interest, principleAmount, monthlyPayment);
+            loanAmount = loanAmount - principleAmount;
+        }
 
     }
-    
+ 
+    private static void formatPrint(int i, double loanAmount, double interest, double principleAmount, double monthlyPayment) {
+        
+
+                                        
+
+
+
+
+    }
 }
+    
+
