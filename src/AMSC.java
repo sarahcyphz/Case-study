@@ -19,7 +19,6 @@ public class AMSC {
 
         input.close();
 
-        
         double monthlyPayment = loanAmount * monthlyRate / (1 - 1 / Math.pow(1 + monthlyRate, loanLength)); 
 
         double interestPaid = loanAmount * monthlyRate;
@@ -28,88 +27,33 @@ public class AMSC {
         double interest;
         double balance = loanAmount;
 
-        // format output
-        System.out.println("Month\t\tLoan Amount\t\tInterest\t\tPrinciple\t\tPayment\t\tBalance");
-        System.out.println("");
+        System.out.println();
+        System.out.println("Month        Loan Amount        Interest        Principle        Payment        Balance");
+        System.out.println("-----        -----------        --------        ---------        -------        -------");
 
         for (int i = 1; i <= loanLength; i++) {
             interest = loanAmount * monthlyRate;
             principleAmount = monthlyPayment - interest;
             balance = loanAmount - principleAmount;
-            formatPrint(i, loanAmount, interest, principleAmount, monthlyPayment, balance);
+            formatPrint(i, loanAmount, interest, principleAmount, monthlyPayment, balance);     // format output
             loanAmount = loanAmount - principleAmount;
         }
 
     }
- 
-    private static void formatPrint(int i, double loanAmount, double interest, double principleAmount, double monthlyPayment, double balance) {
-       
-        DecimalFormat df = new DecimalFormat("$#,###.00");
 
-        // format month
-       if (i>9) {
-            System.out.print(i + " ");
-        }
-        else {
-            System.out.print(i);
-        }
-        System.out.print("\t\t");
+    private static void formatPrint(int i, double loanAmount, double interest, double principleAmount, double monthlyPayment, double balance){
 
-        // format loan amount
-       if (loanAmount < 1000) {
-            System.out.print(df.format(loanAmount) + "  ");
-            if (loanAmount < 100) {
-                System.out.print(" ");
-            }
-        }
-        else {
-            System.out.print(df.format(loanAmount));
-        }
-        System.out.print("\t\t");
+        String str1 = String.format("%-13d", i);
+        String str2 = String.format("$%-,18.2f", loanAmount);
+        String str3 = String.format("$%-,15.2f", interest);
+        String str4 = String.format("$%-,16.2f", principleAmount);
+        String str5 = String.format("$%-,14.2f", monthlyPayment);
+        String str6 = String.format("$%-,18.2f", balance);
 
-        //format interest
-       if (interest < 10) {
-            System.out.print(df.format(interest) + " ");
-            System.out.print("\t\t\t");
-        }
-        else if (interest > 999) {
-            System.out.print(df.format(interest));
-            System.out.print("\t\t");
-        }
-        else {
-            System.out.print(df.format(interest));
-            System.out.print("\t\t\t");
-        }
-
-        // format principle
-       if (principleAmount < 1000) {
-            if (principleAmount <10) {
-                System.out.print(df.format(principleAmount) + "    ");
-            }
-            else {
-                System.out.print(df.format(principleAmount) + "  ");
-            }
-        }
-        else {
-            System.out.print(df.format(principleAmount));
-        }
-        System.out.print("\t\t");
-
-        // format monthly payment
-        if (monthlyPayment > 999) {
-            System.out.print(df.format(monthlyPayment));
-            System.out.print("\t");
-        }
-        else {
-            System.out.print(df.format(monthlyPayment));
-            System.out.print("\t\t");
-        }
-
-        // format balance
-        System.out.println(df.format(balance));
+        System.out.println(str1 + str2 + str3 + str4 + str5 + str6);
         
-                              
     }
+ 
 }
     
 
