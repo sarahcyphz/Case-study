@@ -1,7 +1,4 @@
 import java.util.Scanner;
-import java.text.DecimalFormat;
-
-
 public class AMSC {
     public static void main(String[] args) throws Exception {
 
@@ -21,10 +18,8 @@ public class AMSC {
 
         double monthlyPayment = loanAmount * monthlyRate / (1 - 1 / Math.pow(1 + monthlyRate, loanLength)); 
 
-        double interestPaid = loanAmount * monthlyRate;
-
-        double principleAmount = monthlyPayment - interestPaid;
-        double interest;
+        double interest = loanAmount * monthlyRate;
+        double principleAmount = monthlyPayment - interest;
         double balance = loanAmount;
 
         System.out.println();
@@ -49,7 +44,7 @@ public class AMSC {
         String str4 = String.format("$%-,16.2f", principleAmount);
         String str5 = String.format("$%-,14.2f", monthlyPayment);
         String str6 = String.format("$%-,18.2f", balance);
-
+  
         System.out.println(str1 + str2 + str3 + str4 + str5 + str6);
         
     }
