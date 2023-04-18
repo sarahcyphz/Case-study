@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.text.DecimalFormat;
 
 
 public class AMSC {
@@ -41,13 +42,34 @@ public class AMSC {
     }
  
     private static void formatPrint(int i, double loanAmount, double interest, double principleAmount, double monthlyPayment) {
-        
+       
+        DecimalFormat df = new DecimalFormat("$#,###.00");
+
+        // format month
+       if (i>9) {
+            System.out.print(i + " ");
+        }
+        else {
+            System.out.print(i);
+        }
+        System.out.print("\t\t");
+
+        // format loan amount
+       if (loanAmount < 1000) {
+            System.out.print(df.format(loanAmount) + "  ");
+            if (loanAmount < 100) {
+                System.out.print(" ");
+            }
+        }
+        else {
+            System.out.print(df.format(loanAmount));
+        }
+        System.out.println("\t\t");
+
+
+
 
                                         
-
-
-
-
     }
 }
     
